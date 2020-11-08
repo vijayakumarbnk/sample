@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 750px;
+            height: 637px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/reservoir_1.js"></script>
+        <script src="data/river_2.js"></script>
+        <script src="data/ayacut_3.js"></script>
+        <script src="data/canal_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[17.63520663471262,77.89024300633496],[17.883320255716708,78.19371760458044]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_sing_image_0');
+        map.getPane('pane_sing_image_0').style.zIndex = 400;
+        var img_sing_image_0 = 'data/sing_image_0.png';
+        var img_bounds_sing_image_0 = [[17.55576504583646,77.7914923223],[17.978327892308325,78.23252854331889]];
+        var layer_sing_image_0 = new L.imageOverlay(img_sing_image_0,
+                                              img_bounds_sing_image_0,
+                                              {pane: 'pane_sing_image_0'});
+        bounds_group.addLayer(layer_sing_image_0);
+        map.addLayer(layer_sing_image_0);
+        function pop_reservoir_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA'] !== null ? autolinker.link(feature.properties['AREA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PERIMETER'] !== null ? autolinker.link(feature.properties['PERIMETER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reservoir_1_0() {
+            return {
+                pane: 'pane_reservoir_1',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,126,184,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reservoir_1');
+        map.getPane('pane_reservoir_1').style.zIndex = 401;
+        map.getPane('pane_reservoir_1').style['mix-blend-mode'] = 'normal';
+        var layer_reservoir_1 = new L.geoJson(json_reservoir_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reservoir_1',
+            layerName: 'layer_reservoir_1',
+            pane: 'pane_reservoir_1',
+            onEachFeature: pop_reservoir_1,
+            style: style_reservoir_1_0,
+        });
+        bounds_group.addLayer(layer_reservoir_1);
+        map.addLayer(layer_reservoir_1);
+        function pop_river_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESISTAN2'] !== null ? autolinker.link(feature.properties['RESISTAN2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_river_2_0() {
+            return {
+                pane: 'pane_river_2',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,126,184,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_river_2');
+        map.getPane('pane_river_2').style.zIndex = 402;
+        map.getPane('pane_river_2').style['mix-blend-mode'] = 'normal';
+        var layer_river_2 = new L.geoJson(json_river_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_river_2',
+            layerName: 'layer_river_2',
+            pane: 'pane_river_2',
+            onEachFeature: pop_river_2,
+            style: style_river_2_0,
+        });
+        bounds_group.addLayer(layer_river_2);
+        map.addLayer(layer_river_2);
+        function pop_ayacut_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>STRING</strong><br />' + (feature.properties['STRING'] !== null ? autolinker.link(feature.properties['STRING'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ayacut_3_0(feature) {
+            switch(String(feature.properties['STRING'])) {
+                case 'BLOCK - 1':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,84,96,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 2':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,239,39,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 3':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,106,229,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 4':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,222,105,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 5':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,61,159,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 6':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,11,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 7':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,107,30,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'BLOCK - 8':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(45,179,212,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'C H A T K U R I    R E S E R V E D    F O R E S T':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(79,16,237,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'MAIN BRANCH CANAL':
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(105,234,189,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_ayacut_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(130,224,53,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ayacut_3');
+        map.getPane('pane_ayacut_3').style.zIndex = 403;
+        map.getPane('pane_ayacut_3').style['mix-blend-mode'] = 'normal';
+        var layer_ayacut_3 = new L.geoJson(json_ayacut_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ayacut_3',
+            layerName: 'layer_ayacut_3',
+            pane: 'pane_ayacut_3',
+            onEachFeature: pop_ayacut_3,
+            style: style_ayacut_3_0,
+        });
+        bounds_group.addLayer(layer_ayacut_3);
+        map.addLayer(layer_ayacut_3);
+        function pop_canal_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">LAYER</th>\
+                        <td>' + (feature.properties['LAYER'] !== null ? autolinker.link(feature.properties['LAYER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">LENGTH</th>\
+                        <td>' + (feature.properties['LENGTH'] !== null ? autolinker.link(feature.properties['LENGTH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_canal_4_0() {
+            return {
+                pane: 'pane_canal_4',
+                opacity: 1,
+                color: 'rgba(20,240,240,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_canal_4');
+        map.getPane('pane_canal_4').style.zIndex = 404;
+        map.getPane('pane_canal_4').style['mix-blend-mode'] = 'normal';
+        var layer_canal_4 = new L.geoJson(json_canal_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_canal_4',
+            layerName: 'layer_canal_4',
+            pane: 'pane_canal_4',
+            onEachFeature: pop_canal_4,
+            style: style_canal_4_0,
+        });
+        bounds_group.addLayer(layer_canal_4);
+        map.addLayer(layer_canal_4);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/canal_4.png" /> canal': layer_canal_4,'ayacut<br /><table><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK10.png" /></td><td>BLOCK - 1</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK21.png" /></td><td>BLOCK - 2</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK32.png" /></td><td>BLOCK - 3</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK43.png" /></td><td>BLOCK - 4</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK54.png" /></td><td>BLOCK - 5</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK65.png" /></td><td>BLOCK - 6</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK76.png" /></td><td>BLOCK - 7</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_BLOCK87.png" /></td><td>BLOCK - 8</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_CHATKURIRESERVEDFOREST8.png" /></td><td>C H A T K U R I    R E S E R V E D    F O R E S T</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_MAINBRANCHCANAL9.png" /></td><td>MAIN BRANCH CANAL</td></tr><tr><td style="text-align: center;"><img src="legend/ayacut_3_10.png" /></td><td></td></tr></table>': layer_ayacut_3,'<img src="legend/river_2.png" /> river': layer_river_2,'<img src="legend/reservoir_1.png" /> reservoir': layer_reservoir_1,"sing_image": layer_sing_image_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_ayacut_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['STRING'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['STRING']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ayacut_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        map.addControl(new L.Control.Search({
+            layer: layer_ayacut_3,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'STRING'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_ayacut_3]);
+        map.on("zoomend", function(){
+            resetLabels([layer_ayacut_3]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_ayacut_3]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_ayacut_3]);
+        });
+        </script>
+    </body>
+</html>
